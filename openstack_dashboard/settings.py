@@ -21,28 +21,12 @@ import os
 import sys
 import warnings
 
+import django
 from django.utils.translation import ugettext_lazy as _
-import xstatic.main
-import xstatic.pkg.angular
-import xstatic.pkg.angular_cookies
-import xstatic.pkg.angular_mock
-import xstatic.pkg.bootstrap_datepicker
-import xstatic.pkg.bootstrap_scss
-import xstatic.pkg.d3
-import xstatic.pkg.font_awesome
-import xstatic.pkg.hogan
-import xstatic.pkg.jasmine
-import xstatic.pkg.jquery
-import xstatic.pkg.jquery_migrate
-import xstatic.pkg.jquery_quicksearch
-import xstatic.pkg.jquery_tablesorter
-import xstatic.pkg.jquery_ui
-import xstatic.pkg.jsencrypt
-import xstatic.pkg.qunit
-import xstatic.pkg.rickshaw
-import xstatic.pkg.spin
 
 from openstack_dashboard import exceptions
+from openstack_dashboard.static_settings import get_staticfiles_dirs  # noqa
+
 
 warnings.formatwarning = lambda message, category, *args, **kwargs: \
     '%s: %s' % (category.__name__, message)
@@ -58,23 +42,15 @@ TEMPLATE_DEBUG = DEBUG
 
 SITE_BRANDING = 'Cloudbase OpenStack Dashboard'
 
-LOGIN_URL = '/auth/login/'
-LOGOUT_URL = '/auth/logout/'
-# LOGIN_REDIRECT_URL can be used as an alternative for
-# HORIZON_CONFIG.user_home, if user_home is not set.
-# Do not set it to '/home/', as this will cause circular redirect loop
-LOGIN_REDIRECT_URL = '/'
+WEBROOT = '/'
+LOGIN_URL = None
+LOGOUT_URL = None
+LOGIN_REDIRECT_URL = None
 
-MEDIA_ROOT = os.path.abspath(os.path.join(ROOT_PATH, '..', 'media'))
-MEDIA_URL = '/media/'
-STATIC_ROOT = os.path.abspath(os.path.join(ROOT_PATH, '..', 'static'))
-STATIC_URL = '/static/'
 
 ROOT_URLCONF = 'openstack_dashboard.urls'
 
 HORIZON_CONFIG = {
-    'dashboards': ('project', 'admin', 'router',),
-    'default_dashboard': 'project',
     'user_home': 'openstack_dashboard.views.get_user_home',
     'ajax_queue_limit': 10,
     'auto_fade_alerts': {
@@ -88,6 +64,7 @@ HORIZON_CONFIG = {
                    'unauthorized': exceptions.UNAUTHORIZED},
     'angular_modules': [],
     'js_files': [],
+    'js_spec_files': [],
 }
 
 # Set to True to allow users to upload images to glance via Horizon server.
@@ -105,11 +82,12 @@ OPENSTACK_IMAGE_BACKEND = {
         ('ami', _('AMI - Amazon Machine Image')),
         ('ari', _('ARI - Amazon Ramdisk Image')),
         ('iso', _('ISO - Optical Disk Image')),
+        ('ova', _('OVA - Open Virtual Appliance')),
         ('qcow2', _('QCOW2 - QEMU Emulator')),
         ('raw', _('Raw')),
-        ('vdi', _('VDI')),
-        ('vhd', _('VHD')),
-        ('vmdk', _('VMDK'))
+        ('vdi', _('VDI - Virtual Disk Image')),
+        ('vhd', _('VHD - Virtual Hard Disk')),
+        ('vmdk', _('VMDK - Virtual Machine Disk')),
     ]
 }
 
@@ -119,8 +97,14 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+)
+if django.VERSION >= (1, 8, 0):
+    MIDDLEWARE_CLASSES += (
+        'django.contrib.auth.middleware.SessionAuthenticationMiddleware',)
+else:
+    MIDDLEWARE_CLASSES += ('django.middleware.doc.XViewMiddleware',)
+MIDDLEWARE_CLASSES += (
     'horizon.middleware.HorizonMiddleware',
-    'django.middleware.doc.XViewMiddleware',
     'django.middleware.locale.LocaleMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
@@ -139,7 +123,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-    'horizon.loaders.TemplateLoader'
+    'horizon.loaders.TemplateLoader',
 )
 
 TEMPLATE_DIRS = (
@@ -151,53 +135,6 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     'compressor.finders.CompressorFinder',
 )
-
-STATICFILES_DIRS = [
-    ('horizon/lib/angular',
-        xstatic.main.XStatic(xstatic.pkg.angular).base_dir),
-    ('horizon/lib/angular',
-        xstatic.main.XStatic(xstatic.pkg.angular_cookies).base_dir),
-    ('horizon/lib/angular',
-        xstatic.main.XStatic(xstatic.pkg.angular_mock).base_dir),
-    ('horizon/lib/bootstrap_datepicker',
-        xstatic.main.XStatic(xstatic.pkg.bootstrap_datepicker).base_dir),
-    ('bootstrap',
-        xstatic.main.XStatic(xstatic.pkg.bootstrap_scss).base_dir),
-    ('horizon/lib',
-        xstatic.main.XStatic(xstatic.pkg.d3).base_dir),
-    ('horizon/lib',
-        xstatic.main.XStatic(xstatic.pkg.hogan).base_dir),
-    ('horizon/lib/font-awesome',
-        xstatic.main.XStatic(xstatic.pkg.font_awesome).base_dir),
-    ('horizon/lib/jasmine-1.3.1',
-        xstatic.main.XStatic(xstatic.pkg.jasmine).base_dir),
-    ('horizon/lib/jquery',
-        xstatic.main.XStatic(xstatic.pkg.jquery).base_dir),
-    ('horizon/lib/jquery',
-        xstatic.main.XStatic(xstatic.pkg.jquery_migrate).base_dir),
-    ('horizon/lib/jquery',
-        xstatic.main.XStatic(xstatic.pkg.jquery_quicksearch).base_dir),
-    ('horizon/lib/jquery',
-        xstatic.main.XStatic(xstatic.pkg.jquery_tablesorter).base_dir),
-    ('horizon/lib/jsencrypt',
-        xstatic.main.XStatic(xstatic.pkg.jsencrypt).base_dir),
-    ('horizon/lib/qunit',
-        xstatic.main.XStatic(xstatic.pkg.qunit).base_dir),
-    ('horizon/lib',
-        xstatic.main.XStatic(xstatic.pkg.rickshaw).base_dir),
-    ('horizon/lib',
-        xstatic.main.XStatic(xstatic.pkg.spin).base_dir),
-]
-
-
-if xstatic.main.XStatic(xstatic.pkg.jquery_ui).version.startswith('1.10.'):
-    # The 1.10.x versions already contain the 'ui' directory.
-    STATICFILES_DIRS.append(('horizon/lib/jquery-ui',
-        xstatic.main.XStatic(xstatic.pkg.jquery_ui).base_dir))
-else:
-    # Newer versions dropped the directory, add it to keep the path the same.
-    STATICFILES_DIRS.append(('horizon/lib/jquery-ui/ui',
-        xstatic.main.XStatic(xstatic.pkg.jquery_ui).base_dir))
 
 COMPRESS_PRECOMPILERS = (
     ('text/scss', 'django_pyscss.compressor.DjangoScssFilter'),
@@ -229,14 +166,15 @@ INSTALLED_APPS = [
 
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 AUTHENTICATION_BACKENDS = ('openstack_auth.backend.KeystoneBackend',)
-MESSAGE_STORAGE = 'django.contrib.messages.storage.cookie.CookieStorage'
+AUTHENTICATION_URLS = ['openstack_auth.urls']
+MESSAGE_STORAGE = 'django.contrib.messages.storage.fallback.FallbackStorage'
 
 SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
 SESSION_COOKIE_HTTPONLY = True
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 SESSION_COOKIE_SECURE = False
 SESSION_TIMEOUT = 1800
-# A token can be near the end af validity when a page starts loading, and
+# A token can be near the end of validity when a page starts loading, and
 # invalid during the rendering which can cause errors when a page load.
 # TOKEN_TIMEOUT_MARGIN defines a time in seconds we retrieve from token
 # validity to avoid this issue. You can adjust this time depending on the
@@ -259,11 +197,11 @@ LANGUAGES = (
     ('en-gb', 'British English'),
     ('es', 'Spanish'),
     ('fr', 'French'),
-    ('hi', 'Hindi'),
     ('ja', 'Japanese'),
     ('ko', 'Korean (Korea)'),
     ('pl', 'Polish'),
     ('pt-br', 'Portuguese (Brazil)'),
+    ('ru', 'Russian'),
     ('zh-cn', 'Simplified Chinese'),
     ('zh-tw', 'Chinese (Taiwan)'),
 )
@@ -286,6 +224,7 @@ POLICY_FILES = {
     'image': 'glance_policy.json',
     'orchestration': 'heat_policy.json',
     'network': 'neutron_policy.json',
+    'telemetry': 'ceilometer_policy.json',
 }
 
 SECRET_KEY = None
@@ -312,10 +251,36 @@ SECURITY_GROUP_RULES = {
     },
 }
 
+ADD_INSTALLED_APPS = []
+
+# STATIC directory for custom theme, set as default.
+# It can be overridden in local_settings.py
+CUSTOM_THEME_PATH = 'static/themes/default'
+
 try:
     from local.local_settings import *  # noqa
 except ImportError:
     logging.warning("No local_settings file found.")
+
+if not WEBROOT.endswith('/'):
+    WEBROOT += '/'
+if LOGIN_URL is None:
+    LOGIN_URL = WEBROOT + 'auth/login/'
+if LOGOUT_URL is None:
+    LOGOUT_URL = WEBROOT + 'auth/logout/'
+if LOGIN_REDIRECT_URL is None:
+    LOGIN_REDIRECT_URL = WEBROOT
+
+MEDIA_ROOT = os.path.abspath(os.path.join(ROOT_PATH, '..', 'media'))
+MEDIA_URL = WEBROOT + 'media/'
+STATIC_ROOT = os.path.abspath(os.path.join(ROOT_PATH, '..', 'static'))
+STATIC_URL = WEBROOT + 'static/'
+STATICFILES_DIRS = get_staticfiles_dirs(WEBROOT)
+
+CUSTOM_THEME = os.path.join(ROOT_PATH, CUSTOM_THEME_PATH)
+STATICFILES_DIRS.append(
+    ('custom', CUSTOM_THEME),
+)
 
 # Load the pluggable dashboard settings
 import openstack_dashboard.enabled
@@ -323,10 +288,15 @@ import openstack_dashboard.local.enabled
 from openstack_dashboard.utils import settings
 
 INSTALLED_APPS = list(INSTALLED_APPS)  # Make sure it's mutable
-settings.update_dashboards([
-    openstack_dashboard.enabled,
-    openstack_dashboard.local.enabled,
-], HORIZON_CONFIG, INSTALLED_APPS)
+settings.update_dashboards(
+    [
+        openstack_dashboard.enabled,
+        openstack_dashboard.local.enabled,
+    ],
+    HORIZON_CONFIG,
+    INSTALLED_APPS,
+)
+INSTALLED_APPS[0:0] = ADD_INSTALLED_APPS
 
 # Ensure that we always have a SECRET_KEY set, even when no local_settings.py
 # file is present. See local_settings.py.example for full documentation on the
@@ -340,13 +310,13 @@ if not SECRET_KEY:
     SECRET_KEY = secret_key.generate_or_read_from_file(os.path.join(LOCAL_PATH,
                                                        '.secret_key_store'))
 
-from openstack_dashboard import policy
-POLICY_CHECK_FUNCTION = policy.check
+from openstack_dashboard import policy_backend
+POLICY_CHECK_FUNCTION = policy_backend.check
 
 # Add HORIZON_CONFIG to the context information for offline compression
 COMPRESS_OFFLINE_CONTEXT = {
     'STATIC_URL': STATIC_URL,
-    'HORIZON_CONFIG': HORIZON_CONFIG
+    'HORIZON_CONFIG': HORIZON_CONFIG,
 }
 
 if DEBUG:
