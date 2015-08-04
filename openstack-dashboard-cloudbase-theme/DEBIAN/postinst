@@ -9,7 +9,7 @@ if [ "$1" = "configure" ]; then
     cd /usr/share/openstack-dashboard
     echo "Collecting and compressing static assets..."
     rm -f /usr/share/openstack-dashboard/openstack_dashboard/local/*.pyc || :
-    rm -f /usr/share/openstack-dashboard/static/custom/* || :
+    rm -f /usr/share/openstack-dashboard/static || :
     python manage.py collectstatic --noinput 2>&1 > /dev/null
     python manage.py compress --force 2>&1 > /dev/null
   )
