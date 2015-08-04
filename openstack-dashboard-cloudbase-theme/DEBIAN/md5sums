@@ -1,8 +1,9 @@
 df8ed81fb2937c02266cd1881a725e13  usr/share/doc/openstack-dashboard-cloudbase-theme/copyright
-d7ba385b1144242d0c95c89779f3b0b0  usr/share/openstack-dashboard-cloudbase-theme/static/themes/cloudbase/_styles.scss
-ef9db57db703a801376a72a7237aa944  usr/share/openstack-dashboard-cloudbase-theme/static/themes/cloudbase/_variables.scss
-4176d38d464e811d147dbde793addcdf  usr/share/openstack-dashboard-cloudbase-theme/static/themes/cloudbase/favicon.ico
-b1a0a5c71961fc11ee5ae40e2a50de57  usr/share/openstack-dashboard-cloudbase-theme/static/themes/cloudbase/image-background-pattern.png
+869a5d41ad22ecbb6fa09da1f46be2d8  usr/share/openstack-dashboard/openstack_dashboard/local/cloudbase_theme.py
 dedaf35717225361187894db503462c2  usr/share/openstack-dashboard-cloudbase-theme/static/themes/cloudbase/cloudbase-blue.png
 daab69547d048a33ac783a8d0065d0c9  usr/share/openstack-dashboard-cloudbase-theme/static/themes/cloudbase/cloudbase.png
-869a5d41ad22ecbb6fa09da1f46be2d8  usr/share/openstack-dashboard/openstack_dashboard/local/cloudbase_theme.py
+4176d38d464e811d147dbde793addcdf  usr/share/openstack-dashboard-cloudbase-theme/static/themes/cloudbase/favicon.ico
+5c4180cdaa09d8b60066a9c9fac738ed  usr/share/openstack-dashboard-cloudbase-theme/static/themes/cloudbase/image-background-pattern.png
+cb740adedc87a99eea5c6277a508545d  usr/share/openstack-dashboard-cloudbase-theme/static/themes/cloudbase/_styles.scss
+06ff4f552a216b1fe27de077b566ed89  usr/share/openstack-dashboard-cloudbase-theme/static/themes/cloudbase/_variables.scss
+
