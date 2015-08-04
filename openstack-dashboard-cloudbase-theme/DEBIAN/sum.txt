@@ -1,6 +1,0 @@
-dedaf35717225361187894db503462c2  cloudbase-blue.png
-daab69547d048a33ac783a8d0065d0c9  cloudbase.png
-4176d38d464e811d147dbde793addcdf  favicon.ico
-b1a0a5c71961fc11ee5ae40e2a50de57  image-background-pattern.png
-d7ba385b1144242d0c95c89779f3b0b0  _styles.scss
-ef9db57db703a801376a72a7237aa944  _variables.scss
