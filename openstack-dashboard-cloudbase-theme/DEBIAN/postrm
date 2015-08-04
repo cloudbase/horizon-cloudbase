@@ -7,6 +7,7 @@ set -e
   sed -i 's/Cloudbase/Ubuntu/g' /etc/openstack-dashboard/local_settings.py
   cd /usr/share/openstack-dashboard
   echo "Collecting and compressing static assets..."
+  rm -f /usr/share/openstack-dashboard/openstack_dashboard/local/cloudbase_theme.pyc
   rm -f /usr/share/openstack-dashboard/static/custom/* || :
   python manage.py collectstatic --noinput 2>&1 > /dev/null
   python manage.py compress --force 2>&1 > /dev/null
