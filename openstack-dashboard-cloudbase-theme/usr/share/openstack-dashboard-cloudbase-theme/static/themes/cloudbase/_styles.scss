@@ -1,0 +1,102 @@
+body,
+.page-header {
+    font-family: Oxygen, Helvetica, Arial, sans-serif !important;
+}
+
+h1, h2, h3, .h1, .h2, .h3, {
+    font-family: Oxygen, Helvetica, Arial, sans-serif !important;
+}
+
+h4, h5, h6, .h4, .h5, .h6 {
+    font-family: Oxygen, Helvetica, Arial, sans-serif !important;
+}
+
+a,
+a:link,
+a:visited {
+  color: $topbar-link-hover;
+}
+
+.topbar,
+.topbar .switcher_bar .btn.btn-topnav {
+	background: $brand-color;
+}
+
+.topbar .switcher_bar .btn.btn-topnav {
+	border-color: $brand-color;
+	color: $white;
+
+	&:hover,
+	&:focus {
+		border-color: $topbar-link-hover;
+		background: $topbar-link-hover;
+		color: $white;
+	}
+}
+
+.topbar h1.brand a {
+	background-image: url("/static/themes/cloudbase/cloudbase.png");
+	background-position: left 4px;
+}
+
+.btn-primary {
+	background: $brand-color;
+	border-color: $brand-color;
+    color: $white;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.open > .btn-primary.dropdown-toggle {
+	background: $topbar-link-hover;
+	border-color: $topbar-link-hover;
+    color: $white;
+}
+
+.nav_accordion dt li a.active,
+.nav_accordion dd li a.active {
+	  border-left: 4px solid $topbar-link-hover;
+	  color: $topbar-link-hover;
+}
+
+.nav_accordion dd li a:hover {
+    color: $topbar-link-hover;
+}
+
+.nav_accordion dt:hover {
+    background-color: $topbar-link-hover;
+    color: $white;
+}
+
+.nav_accordion dt.active {
+    background-color: $brand-color;
+    color: $white;
+
+}
+
+#splash {
+	background: url("/static/themes/cloudbase/image-background-pattern.png");
+	background: linear-gradient(to right, rgba(100, 100, 100, 0.2), transparent), url("/static/themes/cloudbase/image-background-pattern.png");
+
+	.login {
+		background-color: $white;
+		background-image: url("/static/themes/cloudbase/cloudbase-blue.png");
+		padding-top: 125px;
+		-moz-box-shadow: 0px 1px 3px 1px rgba(51,51,51,0.2);
+		-webkit-box-shadow: 0px 1px 3px 1px rgba(51,51,51,0.2);
+		box-shadow: 0px 1px 3px 1px rgba(51,51,51,0.2);
+
+		&:after {
+			// content: "Openstack Dashboard";
+			position: absolute;
+			top: 120px;
+			color: #33415E;
+			display: block;
+			text-align: center;
+			width: 100%;
+			font-size: 21px;
+		}
+	}
+}
