@@ -1,0 +1,31 @@
+Format: 1.8
+Date: Tue, 31 May 2016 12:34:43 +0300
+Source: openstack-dashboard-cloudbase-theme
+Binary: openstack-dashboard-cloudbase-theme
+Architecture: source amd64
+Version: 9.0.0-0ubuntu1
+Distribution: xenial
+Urgency: low
+Maintainer: Dorin Paslaru <dpaslaru@cloudbasesolutions.com>
+Changed-By: Dorin Paslaru <dpaslaru@cloudbasesolutions.com>
+Description: 
+ openstack-dashboard-cloudbase-theme - Cloudbase theme for the OpenStack dashboard
+Changes: 
+ openstack-dashboard-cloudbase-theme (9.0.0-0ubuntu1) xenial; urgency=low
+ .
+   * Initial release
+Checksums-Sha1: 
+ f0ed7ee7866bdd866d69aab7dcc8a4edace41252 1115 openstack-dashboard-cloudbase-theme_9.0.0-0ubuntu1.dsc
+ d13f84fee6a8034e46ccfa1484cd9e1d64c4e394 31006 openstack-dashboard-cloudbase-theme_9.0.0.orig.tar.gz
+ 43c5d6adca4e03013db0b87bd8c0ac1062c20192 9726 openstack-dashboard-cloudbase-theme_9.0.0-0ubuntu1.debian.tar.gz
+ 1612469cc22cc8ce8ee059b213fe9b152e3210b7 2350 openstack-dashboard-cloudbase-theme_9.0.0-0ubuntu1_amd64.deb
+Checksums-Sha256: 
+ 95bfe92eb814db5e594beb2b3e3087862628f3d6b71b59b152cd9e81f65e9409 1115 openstack-dashboard-cloudbase-theme_9.0.0-0ubuntu1.dsc
+ 85106f7e70cb9151fb9c85e4cf8b39cc214c5d82591bc843a3d436df68653c70 31006 openstack-dashboard-cloudbase-theme_9.0.0.orig.tar.gz
+ 62a74bac74e35cb367a3a08137d463a4d7664931f0b5cb6d03268bada3720dbb 9726 openstack-dashboard-cloudbase-theme_9.0.0-0ubuntu1.debian.tar.gz
+ 8132fb23760cef8327aedd0beae572057bd8bb17a604f80009b7b52e0b4b4c7e 2350 openstack-dashboard-cloudbase-theme_9.0.0-0ubuntu1_amd64.deb
+Files: 
+ f01979d441ef2f39b6fd4684859908f4 1115 net optional openstack-dashboard-cloudbase-theme_9.0.0-0ubuntu1.dsc
+ c6aa4841f7523793782944288bdbb34f 31006 net optional openstack-dashboard-cloudbase-theme_9.0.0.orig.tar.gz
+ c214062704d2cd5147734b7bec740599 9726 net optional openstack-dashboard-cloudbase-theme_9.0.0-0ubuntu1.debian.tar.gz
+ bcb43dd93a31fb4eb1d6557d3f769dcb 2350 net optional openstack-dashboard-cloudbase-theme_9.0.0-0ubuntu1_amd64.deb

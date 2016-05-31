@@ -1,0 +1,13 @@
+Package: openstack-dashboard-cloudbase-theme
+Version: 9.0.0-0ubuntu1
+Architecture: amd64
+Maintainer: Dorin Paslaru <dpaslaru@cloudbasesolutions.com>
+Installed-Size: 27
+Depends: openstack-dashboard (= 2:9.0.0-0ubuntu2~cloud0)
+Replaces: openstack-dashboard-ubuntu-theme (<= 2:9.0.0-0ubuntu2~cloud0)
+Section: net
+Priority: optional
+Homepage: https://github.com/cloudbase/horizon-cloudbase
+Description: Cloudbase theme for the OpenStack dashboard
+ A custom Cloudbase theme for Horizon.  This package is optional and overrides the
+ default theme and branding.
